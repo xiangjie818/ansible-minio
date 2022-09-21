@@ -1,0 +1,6 @@
+---
+  - hosts: minio
+    gather_facts: False
+    become: True
+    roles:
+      - minio

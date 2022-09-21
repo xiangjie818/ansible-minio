@@ -1,0 +1,30 @@
+devices:
+  - '/dev/sdb'
+  - '/dev/sdc'
+  - '/dev/sdd'
+  - '/dev/sde'
+  - '/dev/sdf'
+  - '/dev/sdg'
+  - '/dev/sdh'
+  - '/dev/sdi'
+  - '/dev/sdj'
+
+mountmap:
+  /dev/sdb:
+    directory: /minio/export1
+  /dev/sdc:
+    directory: /minio/export2
+  /dev/sdd:
+    directory: /minio/export3
+  /dev/sde:
+    directory: /minio/export4
+  /dev/sdf:
+    directory: /minio/export5
+  /dev/sdg:
+    directory: /minio/export6
+  /dev/sdh:
+    directory: /minio/export7
+  /dev/sdi:
+    directory: /minio/export8
+  /dev/sdj:
+    directory: /minio/export9

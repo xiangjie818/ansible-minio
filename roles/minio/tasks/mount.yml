@@ -1,0 +1,10 @@
+---
+- name: Format Partition
+  raw: "mkfs.xfs {{ item }}1 -f"
+  with_items:
+    - "{{ devices }}"
+
+- name: Create Mount File
+  template:
+    src: minio-export.mount.j2
+    dest: "/usr/lib/systemd/system/minio-{{ item.value.directory.split('/')[-1] }}.mount"

@@ -1,0 +1,6 @@
+---
+- name: 创建数据盘分区
+  sgdisk:
+    disk: "{{ item }}"
+  with_items:
+    - "{{ devices }}"
