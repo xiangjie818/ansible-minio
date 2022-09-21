@@ -1,0 +1,2 @@
+# ansible-minio
+MinIO deploy
