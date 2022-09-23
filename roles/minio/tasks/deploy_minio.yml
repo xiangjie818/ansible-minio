@@ -1,0 +1,48 @@
+---
+- name: Distribute MinIO program files
+  copy:
+    src: minio
+    dest: /usr/local/bin/minio
+    mode: 0755
+
+- name: Generate a MinIO service file
+  copy:
+    src: minio.service
+    dest: /usr/lib/systemd/system/minio.service
+    mode: 0644
+
+- name: Generate a MinIO user group
+  group:
+    name: minio-user
+    state: present
+
+- name: Generate a MinIO user
+  user:
+    name: minio-user
+    create_home: no
+    group: minio-user
+    state: present
+    system: yes
+
+- name: Change ownership of directory
+  file:
+    path: "{{ item.value.directory }}"
+    state: directory
+    owner: minio-user
+    group: minio-user
+  with_dict:
+    - "{{ mountmap }}"
+
+- name: Generate a MinIO configuration file
+  template:
+    src: minio.j2
+    dest: /etc/default/minio
+  notify:
+    - Restart MinIO
+
+- name: Start MinIO service
+  systemd:
+    name: minio
+    state: started
+    daemon_reload: yes
+    enabled: yes

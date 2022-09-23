@@ -3,4 +3,10 @@
     gather_facts: False
     become: True
     roles:
+      - prepare
+
+  - hosts: minio
+    gather_facts: True
+    become: True
+    roles:
       - minio

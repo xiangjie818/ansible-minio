@@ -28,3 +28,8 @@ mountmap:
     directory: /minio/export8
   /dev/sdj:
     directory: /minio/export9
+
+minio_volumes: "http://node{1...4}:9000/minio/export{1...9}"
+minio_opts: "--console-address :9001"
+minio_root_user: admin
+minio_root_password: f3YOzxEo1Vc5wjYNQwfA

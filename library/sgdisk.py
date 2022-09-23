@@ -6,6 +6,7 @@ import commands
 def newpartition(disk):
     cmd = 'sgdisk -n 0:0:0 {}'.format(disk)
     output = commands.getoutput(cmd)
+    commands.getoutput('mkfs.xfs {}1 -f'.format(disk))
     return output
     
 def main():

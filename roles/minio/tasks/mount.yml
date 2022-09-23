@@ -1,10 +1,24 @@
 ---
-- name: Format Partition
-  raw: "mkfs.xfs {{ item }}1 -f"
-  with_items:
-    - "{{ devices }}"
-
 - name: Create Mount File
   template:
     src: minio-export.mount.j2
     dest: "/usr/lib/systemd/system/minio-{{ item.value.directory.split('/')[-1] }}.mount"
+  with_dict:
+    - "{{ mountmap }}"
+
+- name: Create Mount Directory
+  file:
+    path: "{{ item.value.directory }}"
+    state: directory
+  with_dict:
+    - "{{ mountmap }}"
+
+- name: Start Mount
+  systemd:
+    name: "minio-{{ item.value.directory.split('/')[-1] }}.mount"
+    state: started
+    daemon_reload: yes
+    enabled: yes
+  with_dict:
+    - "{{ mountmap }}"
+

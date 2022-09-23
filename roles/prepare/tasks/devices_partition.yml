@@ -1,0 +1,6 @@
+---
+- name: Create a data disk partition
+  sgdisk:
+    disk: "{{ item }}"
+  with_items:
+    - "{{ devices }}"
