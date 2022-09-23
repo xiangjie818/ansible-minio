@@ -1,12 +1,24 @@
 # ansible-minio
 MinIO deploy
-#### 1) 修改hosts文件
+#### 1) 修改本地hosts文件
 示例
 ```bash
 172.16.0.11 node1
 172.16.0.12 node2
 172.16.0.13 node3
 172.16.0.14 node4
+```
+#### 2) 添加inventory配置
+示例
+```bash
+[minio]
+172.16.0.11
+172.16.0.12
+172.16.0.13
+172.16.0.14
+
+[all:vars]
+ansible_ssh_port=22
 ```
 #### 2) 修改all.yml
 示例
@@ -47,7 +59,7 @@ minio_opts: "--console-address :9001"
 minio_root_user: admin
 minio_root_password: f3YOzxEo1Vc5wjYNQwfA
 ```
-#### 3) 安装
+#### 3) 安装MinIO
 ```bash
-ansible-playbook minio.yml -i hosts
+ansible-playbook minio.yml -i <inventory file>
 ```
