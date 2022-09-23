@@ -57,7 +57,7 @@ mountmap:
 minio_volumes: "http://node{1...4}:9000/minio/export{1...9}"
 minio_opts: "--console-address :9001"
 minio_root_user: admin
-minio_root_password: f3YOzxEo1Vc5wjYNQwfA
+minio_root_password: xxxxxxxxxxxxx
 ```
 #### 3) 安装MinIO
 ```bash
